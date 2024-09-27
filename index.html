@@ -346,9 +346,122 @@
     <!-- Contact Section -->
     <div id="contact" class="section contact">
         <h2>Contact Us</h2>
+        
+        <!-- Success Message -->
+        <div id="success-message" class="hidden-message">
+            <p>Thank you for your message. We will get back to you shortly.</p>
+        </div>
+        
+        <form action="#success-message" id="contact-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Your Email" required>
+            
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+            
+            <button type="submit">Submit</button>
+        </form>
+        
         <p>Email: info@carsellingcompany.com</p>
         <p>Phone: +123 456 7890</p>
     </div>
+
+    <style>
+        /* General Contact Section Styling */
+        .section.contact {
+            padding: 50px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .section.contact h2 {
+            font-size: 2em;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        /* Success Message Styling */
+        .hidden-message {
+            display: none;
+            color: #28a745;
+            font-size: 18px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        /* Show success message when target is active */
+        #success-message:target {
+            display: block;
+        }
+
+        /* Contact Form Styling */
+        #contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #contact-form label {
+            margin-top: 15px;
+            font-weight: bold;
+            text-align: left;
+            color: #555;
+        }
+
+        #contact-form input, #contact-form textarea {
+            padding: 12px;
+            margin-top: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+            width: 100%;
+            transition: border-color 0.3s ease;
+        }
+
+        #contact-form input:focus, #contact-form textarea:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        #contact-form textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        #contact-form button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 0;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        #contact-form button:hover {
+            background-color: #0056b3;
+            transform: scale(1.02);
+        }
+
+        /* Contact Info Styling */
+        .section.contact p {
+            font-size: 16px;
+            color: #666;
+            margin-top: 20px;
+        }
+    </style>
+
 
     <!-- Footer -->
     <div class="footer">
