@@ -1,4 +1,4 @@
-# IBM_CODE_THE-FUTURE
+# AutoGears
 
 Welcome to the IBM_CODE_THE-FUTURE project! This project aims to [brief description of the project].
 
