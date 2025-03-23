@@ -2,379 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Car Selling Company</title>
-  <style>
-    /* Base Styles & Theme Colors */
-    :root {
-      --primary-color: #002244; /* A deep navy for stability */
-      --accent-color: #f4c842;  /* Bright gold for call-to-actions */
-      --light-bg: #fafafa;
-      --dark-text: #333;
-      --neutral-bg: #f2f2f2;
-    }
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      scroll-behavior: smooth;
-      color: var(--dark-text);
-      background-color: var(--light-bg);
-    }
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-    
-    /* Navbar Styles */
-    .navbar {
-      background-color: var(--primary-color);
-      position: fixed;
-      width: 100%;
-      top: 0;
-      z-index: 1000;
-      overflow: hidden;
-    }
-    .navbar a {
-      float: left;
-      display: block;
-      color: #f2f2f2;
-      text-align: center;
-      padding: 14px 20px;
-      transition: background 0.3s ease, color 0.3s ease;
-    }
-    .navbar a:hover {
-      background-color: var(--accent-color);
-      color: #000;
-    }
-    
-    /* Hero Section */
-    .hero {
-      height: 100vh;
-      background: url('https://img.freepik.com/premium-photo/shiny-black-car-polished-with-dark-isolated-background-website-print-design_800563-1809.jpg') no-repeat center center/cover;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      color: white;
-      position: relative;
-    }
-    .hero::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 0;
-    }
-    .hero > div {
-      position: relative;
-      z-index: 1;
-    }
-    .hero h1 {
-      font-size: 3.5rem;
-      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-      margin-bottom: 10px;
-    }
-    .hero p {
-      font-size: 1.2rem;
-    }
-    .hero .cta-button {
-      background-color: var(--accent-color);
-      border: none;
-      padding: 12px 24px;
-      font-size: 1rem;
-      cursor: pointer;
-      color: #000;
-      margin-top: 20px;
-      transition: transform 0.3s ease, background-color 0.3s ease;
-    }
-    .hero .cta-button:hover {
-      background-color: #e0b12c;
-      transform: scale(1.05);
-    }
-    
-    /* Section Styles */
-    .section {
-      padding: 80px 20px;
-      margin-top: 50px;
-    }
-    .about, .contact {
-      background-color: var(--neutral-bg);
-    }
-    .about h2, .contact h2 {
-      text-align: center;
-      font-size: 2.5rem;
-    }
-    .about p, .contact p {
-      max-width: 800px;
-      margin: 0 auto;
-      text-align: center;
-      font-size: 1.2rem;
-    }
-    
-    /* About Section Layout */
-    .about-content {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .about-text, .about-image {
-      flex: 1;
-      min-width: 300px;
-      padding: 20px;
-    }
-    .about-text p {
-      font-size: 1.1rem;
-      line-height: 1.6;
-      margin-bottom: 15px;
-    }
-    .about-image img {
-      max-width: 100%;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-    
-    /* Featured Cars Section */
-    .cars-section {
-      background-color: #e9e9e9;
-      text-align: center;
-      padding: 60px 20px;
-    }
-    .cars-section h2 {
-      margin-bottom: 40px;
-      font-size: 2.5rem;
-    }
-    .car-card {
-      background-color: #fff;
-      padding: 20px;
-      margin: 15px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      display: inline-block;
-      width: 300px;
-      transition: transform 0.3s ease;
-      cursor: pointer;
-    }
-    .car-card:hover {
-      transform: translateY(-10px);
-    }
-    .car-card img {
-      max-width: 100%;
-      border-radius: 8px;
-    }
-    .car-title {
-      font-size: 1.5rem;
-      margin: 15px 0;
-    }
-    .car-price {
-      color: var(--accent-color);
-      font-size: 1.2rem;
-    }
-    
-    /* Button Styles */
-    .buy-now-button, .details-button {
-      border: none;
-      padding: 10px 20px;
-      cursor: pointer;
-      margin-top: 10px;
-      transition: background-color 0.3s ease;
-    }
-    .buy-now-button {
-      background-color: var(--accent-color);
-      color: #000;
-      margin-right: 5px;
-    }
-    .buy-now-button:hover {
-      background-color: #e0b12c;
-    }
-    .details-button {
-      background-color: var(--primary-color);
-      color: #fff;
-    }
-    .details-button:hover {
-      background-color: #003366;
-    }
-    
-    /* Modal (Shared Styles) */
-    .modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0,0,0,0.8);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-      z-index: 2000;
-    }
-    .modal.active {
-      opacity: 1;
-      pointer-events: all;
-    }
-    .modal-content {
-      background: #fff;
-      padding: 2rem;
-      border-radius: 8px;
-      max-width: 600px;
-      width: 90%;
-      position: relative;
-      text-align: left;
-    }
-    .modal-close {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: var(--accent-color);
-      border: none;
-      border-radius: 50%;
-      width: 30px;
-      height: 30px;
-      cursor: pointer;
-      font-size: 1.2rem;
-      line-height: 30px;
-      text-align: center;
-    }
-    
-    /* Checkout Modal Specific */
-    .checkout-form label {
-      display: block;
-      margin-top: 15px;
-      font-weight: bold;
-    }
-    .checkout-form input {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      box-sizing: border-box;
-    }
-    .checkout-form button {
-      margin-top: 20px;
-      background-color: var(--primary-color);
-      color: #fff;
-      border: none;
-      padding: 12px;
-      width: 100%;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    .checkout-form button:hover {
-      background-color: #001f33;
-    }
-    
-    /* Contact Section */
-    .section.contact {
-      padding: 50px;
-      background-color: var(--light-bg);
-      text-align: center;
-    }
-    .section.contact h2 {
-      font-size: 2em;
-      margin-bottom: 30px;
-      color: var(--dark-text);
-    }
-    .hidden-message {
-      display: none;
-      color: #28a745;
-      font-size: 18px;
-      margin-bottom: 20px;
-      font-weight: bold;
-    }
-    #success-message:target {
-      display: block;
-    }
-    #contact-form {
-      max-width: 600px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-    #contact-form label {
-      margin-top: 15px;
-      font-weight: bold;
-      text-align: left;
-      color: #555;
-    }
-    #contact-form input, #contact-form textarea {
-      padding: 12px;
-      margin-top: 8px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      font-size: 16px;
-      width: 100%;
-      transition: border-color 0.3s ease;
-    }
-    #contact-form input:focus, #contact-form textarea:focus {
-      outline: none;
-      border-color: #007bff;
-    }
-    #contact-form textarea {
-      min-height: 150px;
-      resize: vertical;
-    }
-    #contact-form button {
-      background-color: #007bff;
-      color: white;
-      border: none;
-      padding: 12px 0;
-      font-size: 16px;
-      border-radius: 4px;
-      cursor: pointer;
-      margin-top: 20px;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-    }
-    #contact-form button:hover {
-      background-color: #0056b3;
-      transform: scale(1.02);
-    }
-    .section.contact p {
-      font-size: 16px;
-      color: #666;
-      margin-top: 20px;
-    }
-    
-    /* Footer */
-    .footer {
-      background-color: var(--primary-color);
-      color: #f2f2f2;
-      text-align: center;
-      padding: 20px 0;
-      margin-top: 30px;
-    }
-    .footer p {
-      margin: 0;
-    }
-  </style>
+  <!-- Link to External CSS -->
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <!-- Navbar -->
   <div class="navbar">
-    <a href="#home">Home</a>
+    <a href="index.html">Home</a>
     <a href="#about">About Us</a>
     <a href="#cars">Featured Cars</a>
     <a href="#contact">Contact Us</a>
+    <a href="login.html">Login</a>
+    <a href="signup.html">Sign Up</a>
   </div>
-  
+
   <!-- Hero Section -->
   <div id="home" class="hero">
-    <div>
-      <h1>Welcome to <span style="color: var(--accent-color);">VITROX</span> <span style="color: blueviolet;">CAR</span> Company</h1>
+    <div class="hero-content">
+      <h1>Welcome to <span>AutoGears</span> <span>CAR</span> Company</h1>
       <p>Your one-stop shop for the best cars in town.</p>
-      <button class="cta-button" onclick="document.getElementById('cars').scrollIntoView()">View Our Cars</button>
+      <button class="cta-button" onclick="document.getElementById('cars').scrollIntoView()">
+        View Our Cars
+      </button>
     </div>
   </div>
-  
+
   <!-- About Section -->
   <div id="about" class="section about">
     <div class="about-content">
@@ -389,41 +43,125 @@
       </div>
     </div>
   </div>
-  
+
   <!-- Featured Cars Section -->
   <div id="cars" class="section cars-section">
     <h2>Featured Cars</h2>
-    <!-- Car Cards -->
-    <div class="car-card" data-car="Luxury Sedan" data-price="$25,000" data-desc="Experience unparalleled comfort and style with our Luxury Sedan. Designed for those who appreciate elegance and performance.">
+    
+    <!-- 1. Luxury Sedan -->
+    <div 
+      class="car-card" 
+      data-car="Luxury Sedan" 
+      data-price="$25,000" 
+      data-desc="Experience unparalleled comfort and style with our Luxury Sedan."
+    >
       <img src="https://www.topgear.com/sites/default/files/news-listicle/image/2023/09/LEAD.jpg" alt="Luxury Sedan">
       <h3 class="car-title">Luxury Sedan</h3>
       <p class="car-price">$25,000</p>
       <button class="buy-now-button">Buy Now</button>
       <button class="details-button">Details</button>
     </div>
-    <div class="car-card" data-car="BMW M8" data-price="$120,000" data-desc="BMW M8 delivers a perfect blend of luxury, technology, and performance. Experience the thrill of a precision-engineered machine.">
+
+    <!-- 2. BMW M8 -->
+    <div 
+      class="car-card" 
+      data-car="BMW M8" 
+      data-price="$120,000" 
+      data-desc="BMW M8 blends luxury, technology, and performance."
+    >
       <img src="https://www.bmw-me.com/content/dam/bmw/common/all-models/m-series/m8-gran-coupe/2022/onepager/bmw-m8-gran-coupe-onepager-gallery-m8-gc-thumbnail-01.jpg" alt="BMW M8">
       <h3 class="car-title">BMW M8</h3>
       <p class="car-price">$120,000</p>
       <button class="buy-now-button">Buy Now</button>
       <button class="details-button">Details</button>
     </div>
-    <div class="car-card" data-car="Maserati" data-price="$150,000" data-desc="Maserati stands for Italian design excellence and exhilarating performance. A symbol of prestige and style.">
+
+    <!-- 3. Maserati -->
+    <div 
+      class="car-card" 
+      data-car="Maserati" 
+      data-price="$150,000" 
+      data-desc="Maserati stands for Italian design excellence and exhilarating performance. A symbol of prestige and style."
+    >
       <img src="https://www.dubicars.com/images/d26fe1/r_960x540/generations/generation_64aaa37763a72_maserati-mc20-exterior-front-right-angled.jpg?6" alt="Maserati">
       <h3 class="car-title">Maserati</h3>
       <p class="car-price">$150,000</p>
       <button class="buy-now-button">Buy Now</button>
       <button class="details-button">Details</button>
     </div>
-    <div class="car-card" data-car="Jeep" data-price="$35,000" data-desc="Jeep combines rugged design with off-road prowess. Built to conquer any terrain while keeping style intact.">
+
+    <!-- 4. Jeep -->
+    <div 
+      class="car-card" 
+      data-car="Jeep" 
+      data-price="$35,000" 
+      data-desc="Jeep combines rugged design with off-road prowess. Built to conquer any terrain while keeping style intact."
+    >
       <img src="https://www.jeep-india.com/content/dam/cross-regional/apac/jeep/en_in/wrangler-price-reveal/gallery/Exterior-6-Website_Gallery-Page.jpg.img.1440.jpg" alt="Jeep">
       <h3 class="car-title">Jeep</h3>
       <p class="car-price">$35,000</p>
       <button class="buy-now-button">Buy Now</button>
       <button class="details-button">Details</button>
     </div>
+
+    <!-- 5. Porsche 911 GT3 (Mismatched Data Attributes) -->
+    <div 
+      class="car-card" 
+      data-car="Jeep" 
+      data-price="$35,000" 
+      data-desc="Jeep combines rugged design with off-road prowess. Built to conquer any terrain while keeping style intact."
+    >
+      <img src="https://www.drivencarguide.co.nz/media/p5ifh0en/20230818_101942.jpg?rmode=max&width=908&height=545" alt="Jeep">
+      <h3 class="car-title">Porsche 911 GT3</h3>
+      <p class="car-price">$350,000</p>
+      <button class="buy-now-button">Buy Now</button>
+      <button class="details-button">Details</button>
+    </div>
+
+    <!-- 6. Mercedes G63 (Mismatched Data Attributes) -->
+    <div 
+      class="car-card" 
+      data-car="Jeep" 
+      data-price="$35,000" 
+      data-desc="Jeep combines rugged design with off-road prowess. Built to conquer any terrain while keeping style intact."
+    >
+      <img src="https://imgd.aeplcdn.com/664x374/n/cw/ec/36129/g-class-exterior-front-view-2.jpeg?isig=0&q=80" alt="Jeep">
+      <h3 class="car-title">Mercedes G63</h3>
+      <p class="car-price">$200,000</p>
+      <button class="buy-now-button">Buy Now</button>
+      <button class="details-button">Details</button>
+    </div>
+
+    <!-- 7. Mini Cooper (Mismatched Data Attributes) -->
+    <div 
+      class="car-card" 
+      data-car="Jeep" 
+      data-price="$35,000" 
+      data-desc="Jeep combines rugged design with off-road prowess. Built to conquer any terrain while keeping style intact."
+    >
+      <img src="https://media.drive.com.au/obj/tx_q:50,rs:auto:1920:1080:1/driveau/upload/cms/uploads/4f230c4c-7721-5a3f-9402-9c0ccd050000" alt="Jeep">
+      <h3 class="car-title">MIni Cooper</h3>
+      <p class="car-price">$80,000</p>
+      <button class="buy-now-button">Buy Now</button>
+      <button class="details-button">Details</button>
+    </div>
+
+    <!-- 8. Range Rover (Mismatched Data Attributes) -->
+    <div 
+      class="car-card" 
+      data-car="Jeep" 
+      data-price="$35,000" 
+      data-desc="Jeep combines rugged design with off-road prowess. Built to conquer any terrain while keeping style intact."
+    >
+      <img src="https://www.motortrend.com/files/6691ac06ebd0de0008230191/4-2025-land-rover-range-rover-sport-front-view.jpg?w=768&width=768&q=75&format=webp" alt="Jeep">
+      <h3 class="car-title">Range Rover</h3>
+      <p class="car-price">$150,000</p>
+      <button class="buy-now-button">Buy Now</button>
+      <button class="details-button">Details</button>
+    </div>
+
   </div>
-  
+
   <!-- Details Modal -->
   <div class="modal" id="carModal">
     <div class="modal-content">
@@ -433,7 +171,7 @@
       <p id="modalCarDesc">Car details will be shown here.</p>
     </div>
   </div>
-  
+
   <!-- Checkout Modal -->
   <div class="modal" id="checkoutModal">
     <div class="modal-content">
@@ -442,25 +180,25 @@
       <p id="checkoutCarPrice">Price: </p>
       <form class="checkout-form">
         <label for="buyerName">Your Name</label>
-        <input type="text" id="buyerName" name="buyerName" placeholder="Enter your name" required />
-        
+        <input type="text" id="buyerName" name="buyerName" required />
+
         <label for="buyerEmail">Email</label>
-        <input type="email" id="buyerEmail" name="buyerEmail" placeholder="Enter your email" required />
-        
+        <input type="email" id="buyerEmail" name="buyerEmail" required />
+
         <label for="cardNumber">Credit Card Number</label>
-        <input type="text" id="cardNumber" name="cardNumber" placeholder="xxxx-xxxx-xxxx-xxxx" required />
-        
+        <input type="text" id="cardNumber" name="cardNumber" required />
+
         <label for="expiry">Expiry Date</label>
-        <input type="text" id="expiry" name="expiry" placeholder="MM/YY" required />
-        
+        <input type="text" id="expiry" name="expiry" required />
+
         <label for="cvv">CVV</label>
-        <input type="text" id="cvv" name="cvv" placeholder="123" required />
-        
+        <input type="text" id="cvv" name="cvv" required />
+
         <button type="submit">Pay Now</button>
       </form>
     </div>
   </div>
-  
+
   <!-- Contact Section -->
   <div id="contact" class="section contact">
     <h2>Contact Us</h2>
@@ -469,85 +207,24 @@
     </div>
     <form action="#success-message" id="contact-form">
       <label for="name">Name:</label>
-      <input type="text" id="name" name="name" placeholder="Your Name" required />
+      <input type="text" id="name" name="name" required />
       <label for="email">Email:</label>
-      <input type="email" id="email" name="email" placeholder="Your Email" required />
+      <input type="email" id="email" name="email" required />
       <label for="message">Message:</label>
-      <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+      <textarea id="message" name="message" required></textarea>
       <button type="submit">Submit</button>
     </form>
     <p>Email: info@carsellingcompany.com</p>
     <p>Phone: +123 456 7890</p>
   </div>
-  
+
   <!-- Footer -->
   <div class="footer">
     <p>&copy; 2023 Car Selling Company. All rights reserved.</p>
   </div>
-  
-  <!-- JavaScript for Modal Functionality -->
-  <script>
-    // Elements for Details Modal
-    const detailsButtons = document.querySelectorAll('.details-button');
-    const carModal = document.getElementById('carModal');
-    const modalCarName = document.getElementById('modalCarName');
-    const modalCarPrice = document.getElementById('modalCarPrice');
-    const modalCarDesc = document.getElementById('modalCarDesc');
-    const modalClose = document.getElementById('modalClose');
 
-    // Elements for Checkout Modal
-    const buyNowButtons = document.querySelectorAll('.buy-now-button');
-    const checkoutModal = document.getElementById('checkoutModal');
-    const checkoutCarName = document.getElementById('checkoutCarName');
-    const checkoutCarPrice = document.getElementById('checkoutCarPrice');
-    const checkoutClose = document.getElementById('checkoutClose');
-    
-    // Open Details Modal on Details button click
-    detailsButtons.forEach(button => {
-      button.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const card = e.target.closest('.car-card');
-        modalCarName.textContent = card.getAttribute('data-car');
-        modalCarPrice.textContent = "Price: " + card.getAttribute('data-price');
-        modalCarDesc.textContent = card.getAttribute('data-desc');
-        carModal.classList.add('active');
-      });
-    });
-    
-    // Open Checkout Modal on Buy Now button click
-    buyNowButtons.forEach(button => {
-      button.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const card = e.target.closest('.car-card');
-        checkoutCarName.textContent = "Checkout - " + card.getAttribute('data-car');
-        checkoutCarPrice.textContent = "Price: " + card.getAttribute('data-price');
-        checkoutModal.classList.add('active');
-      });
-    });
-    
-    // Close modals on clicking close button or clicking outside modal content
-    modalClose.addEventListener('click', () => {
-      carModal.classList.remove('active');
-    });
-    checkoutClose.addEventListener('click', () => {
-      checkoutModal.classList.remove('active');
-    });
-    
-    window.addEventListener('click', (e) => {
-      if(e.target === carModal) {
-        carModal.classList.remove('active');
-      }
-      if(e.target === checkoutModal) {
-        checkoutModal.classList.remove('active');
-      }
-    });
-    
-    // Optional: Handle checkout form submission
-    document.querySelector('.checkout-form').addEventListener('submit', (e) => {
-      e.preventDefault();
-      alert('Payment processed successfully!');
-      checkoutModal.classList.remove('active');
-    });
-  </script>
+  <!-- JavaScript -->
+  <script src="script.js"></script>
 </body>
 </html>
+
